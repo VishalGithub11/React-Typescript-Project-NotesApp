@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { INotes } from "./models/notes";
+import { NoteList } from "./Notes/NoteList";
+import { CreateNotes } from "./Notes/CreateNotes";
 
 function App() {
+  const [notes, setNotes] = useState<INotes[]>([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <div className="container">
+        <div className="row">
+          <NoteList notes={notes} setNotes={setNotes} />
+        </div>
+        <div
+          className="row"
+          style={{
+            maxWidth: "500px",
+            marginTop: "35px",
+            padding: "15px",
+            border: "1px solid grey",
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <CreateNotes setNotes={setNotes} notes={notes} />
+        </div>
+      </div>
     </div>
   );
 }
